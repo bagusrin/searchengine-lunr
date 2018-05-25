@@ -1,1 +1,2 @@
-# morich-api
+# lunr searchengine
+## simple searchengine using lunr on nodejs

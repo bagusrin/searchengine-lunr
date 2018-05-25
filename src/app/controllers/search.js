@@ -36,9 +36,11 @@ function cSearch() {
          
         });
 
-        keyword = textProcessing.removeStopwordsID(keyword)
-        keyword = keyword.replace(/gudang/g, "*gudang*");
-        keyword = keyword.replace(/ecommerce/g, "e-commerce");
+        if(!empty(keyword)){
+          keyword = textProcessing.removeStopwordsID(keyword)
+          keyword = keyword.replace(/gudang/g, "*gudang*");
+          keyword = keyword.replace(/ecommerce/g, "e-commerce");
+        }
 
         var ret = idx.search(keyword);
 

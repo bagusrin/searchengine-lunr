@@ -40,6 +40,8 @@ function cSearch() {
           keyword = textProcessing.removeStopwordsID(keyword)
           keyword = keyword.replace(/gudang/g, "*gudang*");
           keyword = keyword.replace(/ecommerce/g, "e-commerce");
+        }else{
+          keyword = "";
         }
 
         var ret = idx.search(keyword);
@@ -188,6 +190,8 @@ function cSearch() {
           keyword = textProcessing.removeStopwordsEN(keyword)
           keyword = keyword.replace(/gudang/g, "*gudang*");
           keyword = keyword.replace(/ecommerce/g, "e-commerce");
+        }else{
+          keyword = "";
         }
 
         var ret = idx.search(keyword);

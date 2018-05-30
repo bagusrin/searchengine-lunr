@@ -5,6 +5,7 @@ module.exports = {
   configure: function(app) {
   	
   	app.route('/search').post(search.searchAction);
+  	app.route('/search/en').post(search.searchEnAction);
   	app.route('/lunr').get(search.lunrAction);
   }
 };

@@ -440,7 +440,16 @@ var methods = {
           'youngest',
           'your',
           'yours',
-          'z'
+          'z',
+          'startup',
+          'service',
+          'platform',
+          'software',
+          'digital',
+          'data',
+          'offer',
+          'system',
+          'advanced'
         )
            
         // Split out all the individual words in the phrase
@@ -1244,7 +1253,8 @@ var methods = {
             'layanan',
             'platform',
             'software',
-            'digital'
+            'digital',
+            'data'
         )
            
         // Split out all the individual words in the phrase

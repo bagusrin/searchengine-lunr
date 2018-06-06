@@ -169,8 +169,8 @@ function cSearch() {
       }
 
       finalRet.sort(function (a, b) {
-        return parseFloat(b.score) - parseFloat(a.score);
-        //return a.provenBusinessModel < b.provenBusinessModel;
+        //return parseFloat(b.score) - parseFloat(a.score);
+        return a.provenBusinessModel < b.provenBusinessModel;
       });
 
       return res.status(200).json({ statusCode: 200, success: true, data: finalRet });
@@ -343,8 +343,8 @@ function cSearch() {
       }
 
       finalRet.sort(function (a, b) {
-        return parseFloat(b.score) - parseFloat(a.score);
-        //return a.provenBusinessModel < b.provenBusinessModel;
+        //return parseFloat(b.score) - parseFloat(a.score);
+        return a.provenBusinessModel < b.provenBusinessModel;
       });
 
       return res.status(200).json({ statusCode: 200, success: true, data: finalRet });

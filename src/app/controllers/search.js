@@ -167,7 +167,9 @@ function cSearch() {
                 "investment": dt[i].investment,
                 "lastRound": dt[i].lastRound,
                 "founder": dt[i].founder,
-                "score": score
+                "score": score,
+                "editorChoice": empty(dt[i].provenBusinessModel) ? 0 : 1
+
               });
             }
 
@@ -176,7 +178,8 @@ function cSearch() {
 
         finalRet.sort(function(a, b) {
             //return parseFloat(b.score) - parseFloat(a.score);
-            return a.provenBusinessModel < b.provenBusinessModel;
+            //return a.provenBusinessModel < b.provenBusinessModel;
+            return parseFloat(b.editorChoice) - parseFloat(a.editorChoice);
         });
 
         return res.status(200).json({statusCode:200,success:true,data:finalRet});
@@ -348,7 +351,8 @@ function cSearch() {
                 "investment": dt[i].investment,
                 "lastRound": dt[i].lastRound,
                 "founder": dt[i].founder,
-                "score": score
+                "score": score,
+                "editorChoice": empty(dt[i].provenBusinessModel) ? 0 : 1
               });
             }
 
@@ -357,7 +361,8 @@ function cSearch() {
 
         finalRet.sort(function(a, b) {
             //return parseFloat(b.score) - parseFloat(a.score);
-            return a.provenBusinessModel < b.provenBusinessModel;
+            //return a.provenBusinessModel < b.provenBusinessModel;
+            return parseFloat(b.editorChoice) - parseFloat(a.editorChoice);
         });
 
         return res.status(200).json({statusCode:200,success:true,data:finalRet});

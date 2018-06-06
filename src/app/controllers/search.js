@@ -15,6 +15,13 @@ function cSearch() {
     var vertical = req.body.vertical;
     var yearEstablished = req.body.yearEstablished;
 
+    console.log(keyword);
+    console.log(businessModel);
+    console.log(location);
+    console.log(roundInvestment);
+    console.log(vertical);
+    console.log(yearEstablished);
+
     axios.get('https://minerva.dailysocial.id/sampoerna.json')
       .then(response => {
 
@@ -37,14 +44,34 @@ function cSearch() {
         });
 
         if(!empty(keyword)){
-          keyword = textProcessing.removeStopwordsID(keyword)
-          keyword = keyword.replace(/gudang/g, "*gudang*");
-          keyword = keyword.replace(/ecommerce/g, "e-commerce");
+
+          if(Array.isArray(keyword)){
+
+            if(keyword.length > 1){
+              var arr = keyword.join(" ");
+              var q = textProcessing.removeStopwordsID(arr);
+              q = q.replace(/gudang/g, "*gudang*");
+              q = q.replace(/ecommerce/g, "e-commerce");
+            }else{
+              var q = textProcessing.removeStopwordsID(keyword[0]);
+              q = q.replace(/gudang/g, "*gudang*");
+              q = q.replace(/ecommerce/g, "e-commerce");
+            }
+
+          }else{
+
+            var q = textProcessing.removeStopwordsID(keyword);
+            q = q.replace(/gudang/g, "*gudang*");
+            q = q.replace(/ecommerce/g, "e-commerce");
+          }
+
         }else{
-          keyword = "";
+          var q = "";
         }
 
-        var ret = idx.search(keyword);
+        console.log(q);
+
+        var ret = idx.search(q);
 
         var resLunr = [];
         var resLunrScore = [];
@@ -134,6 +161,9 @@ function cSearch() {
                 "urlNews": dt[i].urlNews,
                 "operationStatus": dt[i].operationStatus,
                 "businessModel": dt[i].businessModel,
+                "provenRevenueModel": dt[i].provenRevenueModel,
+                "provenBusinessModel": dt[i].provenBusinessModel,
+                "editorialRating": dt[i].editorialRating,
                 "investment": dt[i].investment,
                 "lastRound": dt[i].lastRound,
                 "founder": dt[i].founder,
@@ -146,6 +176,7 @@ function cSearch() {
 
         finalRet.sort(function(a, b) {
             return parseFloat(b.score) - parseFloat(a.score);
+            //return a.provenBusinessModel < b.provenBusinessModel;
         });
 
         return res.status(200).json({statusCode:200,success:true,data:finalRet});
@@ -164,6 +195,13 @@ function cSearch() {
     var roundInvestment = req.body.roundInvestment;
     var vertical = req.body.vertical;
     var yearEstablished = req.body.yearEstablished;
+
+    console.log(keyword);
+    console.log(businessModel);
+    console.log(location);
+    console.log(roundInvestment);
+    console.log(vertical);
+    console.log(yearEstablished);
 
     axios.get('https://minerva.dailysocial.id/sampoerna.json')
       .then(response => {
@@ -187,14 +225,34 @@ function cSearch() {
         });
 
         if(!empty(keyword)){
-          keyword = textProcessing.removeStopwordsEN(keyword)
-          keyword = keyword.replace(/gudang/g, "*gudang*");
-          keyword = keyword.replace(/ecommerce/g, "e-commerce");
+
+          if(Array.isArray(keyword)){
+
+            if(keyword.length > 1){
+              var arr = keyword.join(" ");
+              var q = textProcessing.removeStopwordsID(arr);
+              q = q.replace(/gudang/g, "*gudang*");
+              q = q.replace(/ecommerce/g, "e-commerce");
+            }else{
+              var q = textProcessing.removeStopwordsID(keyword[0]);
+              q = q.replace(/gudang/g, "*gudang*");
+              q = q.replace(/ecommerce/g, "e-commerce");
+            }
+
+          }else{
+
+            var q = textProcessing.removeStopwordsID(keyword);
+            q = q.replace(/gudang/g, "*gudang*");
+            q = q.replace(/ecommerce/g, "e-commerce");
+          }
+
         }else{
-          keyword = "";
+          var q = "";
         }
 
-        var ret = idx.search(keyword);
+        console.log(q);
+
+        var ret = idx.search(q);
 
         var resLunr = [];
         var resLunrScore = [];
@@ -284,6 +342,9 @@ function cSearch() {
                 "urlNews": dt[i].urlNews,
                 "operationStatus": dt[i].operationStatus,
                 "businessModel": dt[i].businessModel,
+                "provenRevenueModel": dt[i].provenRevenueModel,
+                "provenBusinessModel": dt[i].provenBusinessModel,
+                "editorialRating": dt[i].editorialRating,
                 "investment": dt[i].investment,
                 "lastRound": dt[i].lastRound,
                 "founder": dt[i].founder,
@@ -296,6 +357,7 @@ function cSearch() {
 
         finalRet.sort(function(a, b) {
             return parseFloat(b.score) - parseFloat(a.score);
+            //return a.provenBusinessModel < b.provenBusinessModel;
         });
 
         return res.status(200).json({statusCode:200,success:true,data:finalRet});
